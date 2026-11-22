@@ -1,0 +1,89 @@
+preview:
+  name: Preview sanitized ability bundle
+  description: >-
+    Discover related helpers, sanitize sensitive data, and return the preview
+    bundle, security audit report, and preview_hash without uploading anything.
+  fields:
+    entity_id:
+      name: Automation or Script
+      description: The automation or script entity to export.
+      required: true
+      selector:
+        entity:
+          domain:
+            - automation
+            - script
+    title:
+      name: Ability title
+      description: Optional public title override for the shared bundle.
+      required: false
+      selector:
+        text:
+    description:
+      name: Ability description
+      description: Optional short description of what this ability does.
+      required: false
+      selector:
+        text:
+          multiline: true
+    include_companion_scripts:
+      name: Include companion scripts
+      description: Bundle referenced helper scripts automatically.
+      default: true
+      selector:
+        boolean:
+    generate_blueprint:
+      name: Generate Blueprint YAML
+      description: Also generate a parameterized blueprint.yaml when eligible.
+      default: true
+      selector:
+        boolean:
+    custom_redactions:
+      name: Custom redaction terms
+      description: Extra words or phrases to strip everywhere in the output.
+      required: false
+      selector:
+        text:
+          multiple: true
+
+share:
+  name: Publish approved sanitized bundle
+  description: >-
+    Publish a previously previewed and approved bundle identified by its
+    preview_hash. Fails closed if the hash is unknown, expired, or has
+    unresolved blocked security findings.
+  fields:
+    preview_hash:
+      name: Preview hash
+      description: Exact SHA-256 preview_hash returned by sharing_is_caring.preview.
+      required: true
+      selector:
+        text:
+    provider:
+      name: Share provider
+      description: Destination provider (github_gist or local).
+      default: github_gist
+      selector:
+        select:
+          options:
+            - label: GitHub Gist
+              value: github_gist
+            - label: Local export
+              value: local
+    visibility:
+      name: Visibility
+      description: Visibility for cloud share providers (secret or public).
+      default: secret
+      selector:
+        select:
+          options:
+            - label: Secret (Unlisted)
+              value: secret
+            - label: Public
+              value: public
+    confirm_review_items:
+      name: Confirm reviewed items
+      description: Required when the audit report contains 'needs_review' items.
+      default: false
+      selector:
+        boolean:

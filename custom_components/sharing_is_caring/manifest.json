@@ -1,0 +1,22 @@
+{
+  "domain": "sharing_is_caring",
+  "name": "Sharing Is Caring",
+  "categories": [
+    "helpers"
+  ],
+  "codeowners": [
+    "@crs2007"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "frontend",
+    "http",
+    "websocket_api"
+  ],
+  "documentation": "https://github.com/crs2007/Sharing-Is-Caring",
+  "integration_type": "service",
+  "iot_class": "cloud_push",
+  "issue_tracker": "https://github.com/crs2007/Sharing-Is-Caring/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

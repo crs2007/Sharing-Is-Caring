@@ -1,0 +1,57 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up Sharing Is Caring",
+        "description": "Share sanitized automations and scripts with their related helpers. Provide your own GitHub Personal Access Token (Fine-Grained with 'Gists: Read and write' only, or Classic with 'gist' scope only) to publish shareable Gist URLs, or leave it blank for Local Copy & Download mode.",
+        "data": {
+          "github_token": "GitHub Personal Access Token (optional)",
+          "default_visibility": "Default Gist visibility",
+          "show_in_sidebar": "Show Sharing Is Caring in the sidebar (admins only)"
+        },
+        "data_description": {
+          "github_token": "Stored locally in Home Assistant and used only when you click Publish. Needs Gist permission only — zero repository access.",
+          "default_visibility": "Secret Gists are unlisted and accessible only to people with the link.",
+          "show_in_sidebar": "Adds a dedicated 3-step share wizard to the Home Assistant sidebar for admin users."
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure Sharing Is Caring",
+        "description": "Update or remove your GitHub Personal Access Token. Leave blank to switch to Local Copy & Download mode only.",
+        "data": {
+          "github_token": "GitHub Personal Access Token (optional)",
+          "default_visibility": "Default Gist visibility"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "GitHub rejected this token (401). Check that the token is valid and not expired.",
+      "insufficient_scope": "This token does not have Gist permission. Enable 'Gists: Read and write' (Fine-Grained PAT) or the 'gist' scope (Classic PAT).",
+      "cannot_connect": "Could not reach api.github.com. Check your Home Assistant internet connectivity and try again.",
+      "unknown": "Unexpected error while validating GitHub credentials."
+    },
+    "abort": {
+      "already_configured": "Sharing Is Caring is already configured.",
+      "reconfigure_successful": "Configuration updated successfully."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Sharing Is Caring Options",
+        "data": {
+          "default_visibility": "Default Gist visibility",
+          "show_in_sidebar": "Show Sharing Is Caring in the sidebar (admins only)"
+        }
+      }
+    }
+  },
+  "selector": {
+    "default_visibility": {
+      "options": {
+        "secret": "Secret (Unlisted URL)",
+        "public": "Public"
+      }
+    }
+  }
+}
