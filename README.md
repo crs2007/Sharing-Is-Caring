@@ -1,3 +1,11 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="custom_components/sharing_is_caring/brand/dark_logo.png">
+    <source media="(prefers-color-scheme: light)" srcset="custom_components/sharing_is_caring/brand/logo.png">
+    <img alt="Sharing Is Caring" src="custom_components/sharing_is_caring/brand/logo.png" height="96">
+  </picture>
+</p>
+
 # Sharing Is Caring
 
 [![Home Assistant Marketplace](https://img.shields.io/badge/Home%20Assistant-Marketplace-41BDF5?logo=home-assistant)](https://www.home-assistant.io/)

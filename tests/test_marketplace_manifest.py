@@ -65,11 +65,26 @@ def test_brand_icons_exist_with_valid_dimensions() -> None:
     import struct
 
     brand_dir = INTEGRATION_DIR / "brand"
-    expected = {"icon.png": (256, 256), "icon@2x.png": (512, 512)}
-    for filename, (exp_w, exp_h) in expected.items():
+    expected_icons = {"icon.png": (256, 256), "icon@2x.png": (512, 512)}
+    for filename, (exp_w, exp_h) in expected_icons.items():
         path = brand_dir / filename
         assert path.is_file(), f"Missing brand asset: {path}"
         header = path.read_bytes()[:24]
         assert header[:8] == b"\x89PNG\r\n\x1a\n"
         width, height = struct.unpack(">II", header[16:24])
         assert (width, height) == (exp_w, exp_h)
+
+    expected_logos = {
+        "logo.png": (128, 256),
+        "logo@2x.png": (256, 512),
+        "dark_logo.png": (128, 256),
+        "dark_logo@2x.png": (256, 512),
+    }
+    for filename, (min_short, max_short) in expected_logos.items():
+        path = brand_dir / filename
+        assert path.is_file(), f"Missing brand logo: {path}"
+        header = path.read_bytes()[:24]
+        assert header[:8] == b"\x89PNG\r\n\x1a\n"
+        width, height = struct.unpack(">II", header[16:24])
+        shortest = min(width, height)
+        assert min_short <= shortest <= max_short, f"{filename} shortest side {shortest} outside {min_short}..{max_short}"
