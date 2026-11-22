@@ -1,9 +1,13 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "sharing-is-caring"
 version = "0.1.0"
 description = "Share Home Assistant automations and scripts with their related helpers via a sanitized, shareable URL — never exposing sensitive data."
 readme = "README.md"
-license = { text = "MIT" }
+license = "MIT"
 requires-python = ">=3.12"
 dependencies = [
     "aiohttp>=3.9",
@@ -20,6 +24,9 @@ dev = [
     "ruff>=0.7",
     "types-PyYAML>=6.0",
 ]
+
+[tool.setuptools.packages.find]
+include = ["custom_components*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

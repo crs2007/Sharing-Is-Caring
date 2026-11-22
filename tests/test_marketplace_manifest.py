@@ -59,3 +59,17 @@ def test_compiled_frontend_panel_asset_exists() -> None:
     content = panel_js.read_text(encoding="utf-8")
     assert "sharing-is-caring-panel" in content
     assert len(content) > 500
+
+
+def test_brand_icons_exist_with_valid_dimensions() -> None:
+    import struct
+
+    brand_dir = INTEGRATION_DIR / "brand"
+    expected = {"icon.png": (256, 256), "icon@2x.png": (512, 512)}
+    for filename, (exp_w, exp_h) in expected.items():
+        path = brand_dir / filename
+        assert path.is_file(), f"Missing brand asset: {path}"
+        header = path.read_bytes()[:24]
+        assert header[:8] == b"\x89PNG\r\n\x1a\n"
+        width, height = struct.unpack(">II", header[16:24])
+        assert (width, height) == (exp_w, exp_h)
